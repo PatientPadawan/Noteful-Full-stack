@@ -1,0 +1,23 @@
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-top: 1px solid;
+}
+
+a#addFolder.button {
+    width: 70%;
+    text-align: center;
+    align-self: center;
+    margin: 0.5em 0;
+    padding: 1em;
+    color: black;
+}
+
+@media only screen and (max-width: 767px) {
+a#addFolder.button {
+    padding: 0.5em .65em;
+}
+}

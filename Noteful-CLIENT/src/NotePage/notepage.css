@@ -1,0 +1,24 @@
+.notePage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: solid 1px;
+}
+
+.note {
+    border: solid 1px black;
+    margin: 0.5em 0;
+    width: 90%;
+    align-self: center;
+}
+
+.notePageContent {
+    margin: 0 5%;
+}
+
+.noteBox {
+    border: solid 1px black;
+    margin: 1em 0;
+    width: 90%;
+    align-self: center;
+}

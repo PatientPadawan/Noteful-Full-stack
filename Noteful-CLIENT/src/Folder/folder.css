@@ -1,0 +1,14 @@
+.folder {
+    border-top: black solid 1px;
+    text-align: center;
+    padding: 5% 0 5% 0;
+    width: 100%;
+}
+
+.navLink {
+    color: black;
+}
+
+li:last-child.folder {
+    border-bottom: black solid 1px;
+}

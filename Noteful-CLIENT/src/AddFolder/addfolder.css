@@ -1,0 +1,16 @@
+form.addFolderForm {
+    border: solid 1px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    text-align: center;
+}
+
+.addFolderButtonGroup {
+    margin: 1em 0 0;
+}
+
+.addFolderButton {
+    margin: 0.25em
+}

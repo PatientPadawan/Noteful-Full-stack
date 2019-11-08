@@ -1,0 +1,34 @@
+.noteContainer {
+  position: relative;
+}
+
+button#note.button {
+  position: absolute;
+  right: 10%;
+  bottom: 40%
+}
+
+.descriptionContainer {
+  padding: 0 0 1em 1em;
+}
+
+.noteTitle {
+  margin-left: 1em;
+}
+
+.linkNote {
+  color: black;
+}
+
+@media only screen and (max-width: 767px) {
+.descriptionContainer {
+  font-size: 14px;
+  width: 55%;
+}
+
+button#note.button {
+  right: 4%;
+  bottom: 10%;
+}
+
+}

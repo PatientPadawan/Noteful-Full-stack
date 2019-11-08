@@ -1,0 +1,34 @@
+.noteList {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-top: solid 1px;
+}
+
+.note {
+    border: solid 1px;
+    margin: 0.5em 0;
+    width: 90%;
+    align-self: center;
+}
+
+a#addNote.button {
+    color: black;
+    align-self: flex-start;
+    padding: 1em 4em;
+    margin: 0.5em 0 1em 5%;
+}
+
+#noteSection {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 767px) {
+    a#addNote.button {
+        align-self: center;
+        padding: 1em 4em;
+        margin: 0.5em 0 1em 0;
+    }
+}

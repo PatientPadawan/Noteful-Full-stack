@@ -1,0 +1,27 @@
+#backButton {
+    width: 95%;
+    padding: 1em;
+    margin: 1em 1em;
+}
+
+.notePageNav {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-top: solid 1px;
+}
+
+.folderName {
+    margin: 1em;
+    align-self: center;
+}
+
+@media only screen and (max-width: 767px) {
+    #backButton {
+        margin: 1em 0.5em;
+    }
+
+    .folderName {
+        font-size: 16px;
+    }
+}
