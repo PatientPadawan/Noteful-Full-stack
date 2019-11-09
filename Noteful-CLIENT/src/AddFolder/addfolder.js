@@ -33,14 +33,14 @@ export default class AddFolder extends Component {
     handleSubmitClick = (e) => {
         e.preventDefault();
         const folder = this.state.folderName.value
-        fetch(`${config.API_ENDPOINT}/folders`, {
+        fetch(`${config.API_ENDPOINT}/api/folders`, {
             method: 'POST',
             body: JSON.stringify({
-                "id": "",
-                "name": `${folder}`
+                "folder_name": `${folder}`
             }),
             headers: {
                 'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
             },
         })
         .then(res => {
@@ -103,9 +103,9 @@ export default class AddFolder extends Component {
 }
 
 AddFolder.propTypes = {
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
     goBack: PropTypes.func.isRequired, 
     onAddFolder: PropTypes.func.isRequired   
 }

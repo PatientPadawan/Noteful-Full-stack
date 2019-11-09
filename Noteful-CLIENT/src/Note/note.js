@@ -9,22 +9,24 @@ export default class Note extends Component {
     static defaultProps = {
         onDeleteNote: () => {},
     }
+   
     static contextType = NotefulContext;
 
     handleClickDelete = e => {
         e.preventDefault()
         const noteId = this.props.id
 
-        fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+        fetch(`${config.API_ENDPOINT}/api/notes/${noteId}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'Authorization': `Bearer ${config.API_KEY}`
             },
         })
         .then(res => {
-            if (!res.ok)
-            return res.json().then(e => Promise.reject(e))
-            return res.json()
+            if (!res.ok) {
+                return res.json().then(e => Promise.reject(e))
+            }
+            // no content on success
         })
         .then(() => {
             this.context.deleteNote(noteId)
@@ -63,7 +65,7 @@ export default class Note extends Component {
 }
 
 Note.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
     modified: PropTypes.string,
     className: PropTypes.string,

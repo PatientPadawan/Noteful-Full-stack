@@ -18,7 +18,7 @@ export default class FolderList extends Component {
                             <Folder 
                                 key={i} 
                                 id={folders[i].id} 
-                                folderName={folders[i].name}
+                                folderName={folders[i].folder_name}
                             />
                         </FolderError>
                     )

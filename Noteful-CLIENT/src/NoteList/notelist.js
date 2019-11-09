@@ -27,7 +27,7 @@ export default class NoteList extends Component {
                         <NoteError>
                             <Note
                                 id={note.id}
-                                name={note.name}
+                                name={note.note_name}
                                 modified={note.modified}
                             />
                         </NoteError>
@@ -47,7 +47,7 @@ export default class NoteList extends Component {
 }
 
 NoteList.propTypes = {
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object
 }

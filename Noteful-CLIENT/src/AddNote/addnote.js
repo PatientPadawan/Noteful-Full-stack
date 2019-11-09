@@ -54,18 +54,18 @@ export default class AddNote extends Component {
         e.preventDefault();
         const modified = new Date();
         const { name, content, folder } = this.state;
-        const matchingFolder = findFolderID(this.context.folders, folder.value)
-        fetch(`${config.API_ENDPOINT}/notes`, {
+        const matchingFolder = findFolderID(this.context.folders, folder.value.trim())
+        fetch(`${config.API_ENDPOINT}/api/notes`, {
             method: 'POST',
             body: JSON.stringify({
-                "id": "",
-                "name": `${name.value}`,
+                "note_name": `${name.value}`,
                 "modified": `${modified.toISOString()}`,
-                "folderId": `${matchingFolder.id}`,
+                "folder_id": `${matchingFolder.id}`,
                 "content": `${content.value}`
             }),
             headers: {
                 'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
             },
         })
         .then(res => {
@@ -85,9 +85,9 @@ export default class AddNote extends Component {
     createFolderList() {
         const folders = this.context.folders;
         let noteFolders = document.getElementById( "noteFolders" )
-        folders.forEach((folder) => {
+        folders.forEach((folders) => {
             let option = document.createElement( 'option' );
-            option.value = folder.name;
+            option.value = folders.folder_name;
             noteFolders.appendChild( option );
         })
     }
@@ -111,7 +111,7 @@ export default class AddNote extends Component {
         const folderName = this.state.folder.value.trim();
         let match = null
         for (let i of folders) {
-            if (folderName === i.name) {
+            if (folderName === i.folder_name) {
                 match = true;
                 break;
             } else {
@@ -160,7 +160,7 @@ export default class AddNote extends Component {
                             onChange={e => this.updateNoteFolder(e.target.value)}
                         />
                         <datalist id='noteFolders'>
-                             {/* datalist is programmatically rendered by createFolderList function */}
+                            {/* datalist is programmatically rendered by createFolderList function */}
                         </datalist>
                         {this.state.folder.touched && <ValidationError message={noteFolderError}/>}
                     </div>
@@ -195,9 +195,9 @@ export default class AddNote extends Component {
 }
 
 AddNote.propTypes = {
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
     onAddNote: PropTypes.func.isRequired,
     folders: PropTypes.array.isRequired
 }

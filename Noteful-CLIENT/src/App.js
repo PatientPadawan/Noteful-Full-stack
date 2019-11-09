@@ -8,6 +8,7 @@ import Main from './Main/main';
 import AddNote from './AddNote/addnote';
 import AddFolder from './AddFolder/addfolder';
 import NotePage from './NotePage/notepage';
+import EditNote from './EditNote/editnote';
 import config from './config';
 import './App.css';
 
@@ -18,7 +19,13 @@ export default class App extends Component {
   };
 
   handleAddNote = () => {
-    fetch(`${config.API_ENDPOINT}/notes`)
+    fetch(`${config.API_ENDPOINT}/api/notes`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.API_KEY}`
+      }
+    })
     .then(res => {
       if (!res.ok)
         return res.json().then(e => Promise.reject(e));
@@ -34,7 +41,13 @@ export default class App extends Component {
   }
 
   handleAddFolder = () => {
-    fetch(`${config.API_ENDPOINT}/folders`)
+    fetch(`${config.API_ENDPOINT}/api/folders`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.API_KEY}`
+      }
+    })
     .then(res => {
       if (!res.ok)
         return res.json().then(e => Promise.reject(e));
@@ -55,10 +68,30 @@ export default class App extends Component {
     })
   }
 
+  handleUpdateNote = newNote => {
+    this.setState({
+      notes: this.state.notes.map(n =>
+        (n.id !== newNote.id) ? n : newNote
+      )
+    })
+  }
+
   componentDidMount() {
     Promise.all([
-        fetch(`${config.API_ENDPOINT}/notes`),
-        fetch(`${config.API_ENDPOINT}/folders`)
+        fetch(`${config.API_ENDPOINT}/api/notes`, {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${config.API_KEY}`
+          }
+        }),
+        fetch(`${config.API_ENDPOINT}/api/folders`, {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${config.API_KEY}`
+          }
+        })
     ])
         .then(([notesRes, foldersRes]) => {
             if (!notesRes.ok)
@@ -106,6 +139,7 @@ export default class App extends Component {
               />
           ))}
           <Route path="/note/:noteId" component={NotePage}/>
+          <Route path="/edit/:noteId" component={EditNote}/>
         </>
     );
   }
@@ -120,7 +154,8 @@ export default class App extends Component {
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
       addNote: this.handleAddNote,
-      addFolder: this.handleAddFolder
+      addFolder: this.handleAddFolder,
+      updateNote: this.handleUpdateNote
     }
 
     return (

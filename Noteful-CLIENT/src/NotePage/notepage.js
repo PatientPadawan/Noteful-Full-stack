@@ -28,7 +28,7 @@ export default class NotePage extends React.Component {
         <div className='noteBox'>
           <Note
             id={note.id}
-            name={note.name}
+            name={note.note_name}
             modified={note.modified}
             onDeleteNote={this.handleDeleteNote}
             className='note'
@@ -45,7 +45,7 @@ export default class NotePage extends React.Component {
 }
 
 NotePage.propTypes = {
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
 }

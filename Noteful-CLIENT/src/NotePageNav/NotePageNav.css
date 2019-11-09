@@ -4,6 +4,14 @@
     margin: 1em 1em;
 }
 
+#editButton {
+    width: 81%;
+    padding: 1em;
+    margin: 0 1em;
+    color: black;
+    text-align: center;
+}
+
 .notePageNav {
     display: flex;
     flex-direction: column;
@@ -19,6 +27,11 @@
 @media only screen and (max-width: 767px) {
     #backButton {
         margin: 1em 0.5em;
+    }
+
+    #editButton {
+        width: 53.5%;
+        margin: 0 0.5em; 
     }
 
     .folderName {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import NotefulContext from '../notefulcontext';
 import { findFolder, findNote } from '../notes-helpers';
 import PropTypes from 'prop-types';
@@ -18,11 +19,10 @@ export default class NotePageNav extends React.Component {
   static contextType = NotefulContext;
 
   render() {
-    console.log(this.props)
     const { notes, folders } = this.context
     const { noteId } = this.props.match.params
     const note = findNote(notes, noteId) || {}
-    const folder = findFolder(folders, note.folderId)
+    const folder = findFolder(folders, note.folder_id)
 
     return (
       <div className='notePageNav'>
@@ -35,9 +35,16 @@ export default class NotePageNav extends React.Component {
         >
         Back
         </button>
+        <Link
+          to={`/edit/${noteId}`}
+          id='editButton'
+          className='button'
+        >
+        Edit
+        </Link>
         {folder && (
           <h2 className='folderName'>
-            {folder.name}
+            {folder.folder_name}
           </h2>
         )}
       </div>
@@ -46,7 +53,7 @@ export default class NotePageNav extends React.Component {
 }
 
 NotePageNav.propTypes = {
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
 }
