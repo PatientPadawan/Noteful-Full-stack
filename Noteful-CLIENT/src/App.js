@@ -7,6 +7,7 @@ import NotePageNav from './NotePageNav/NotePageNav';
 import Main from './Main/main';
 import AddNote from './AddNote/addnote';
 import AddFolder from './AddFolder/addfolder';
+import DeleteFolder from './DeleteFolder/DeleteFolder';
 import NotePage from './NotePage/notepage';
 import EditNote from './EditNote/editnote';
 import config from './config';
@@ -65,6 +66,13 @@ export default class App extends Component {
   handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
+    })
+  }
+
+  handleDeleteFolder = folderId => {
+    this.setState({
+      folders: this.state.folders.filter(folder => folder.id !== folderId),
+      notes: this.state.notes.filter(note => note.folder_id !== folderId)
     })
   }
 
@@ -140,6 +148,7 @@ export default class App extends Component {
           ))}
           <Route path="/note/:noteId" component={NotePage}/>
           <Route path="/edit/:noteId" component={EditNote}/>
+          <Route path="/delete-folder" component={DeleteFolder}/>
         </>
     );
   }
@@ -152,10 +161,11 @@ export default class App extends Component {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote,
       addNote: this.handleAddNote,
       addFolder: this.handleAddFolder,
-      updateNote: this.handleUpdateNote
+      deleteNote: this.handleDeleteNote,
+      deleteFolder: this.handleDeleteFolder,
+      updateNote: this.handleUpdateNote,
     }
 
     return (

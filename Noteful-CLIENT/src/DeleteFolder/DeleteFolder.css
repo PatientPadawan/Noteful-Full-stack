@@ -1,0 +1,16 @@
+form.delFolderForm {
+    border: solid 1px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    text-align: center;
+}
+
+.delFolderButtonGroup {
+    margin: 1em 0 0;
+}
+
+.delFolderButton {
+    margin: 0.25em
+}

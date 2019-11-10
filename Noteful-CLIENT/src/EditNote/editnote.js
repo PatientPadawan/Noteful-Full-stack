@@ -18,6 +18,12 @@ class EditNote extends Component {
     }).isRequired,
   };
 
+  static defaultProps = {
+    history: {
+      goBack: () => {}
+    }
+  }
+
   static contextType = NotefulContext;
 
   state = {
@@ -97,8 +103,8 @@ class EditNote extends Component {
   }
 
   handleClickCancel = () => {
-    this.props.history.push('/')
-  };
+    this.props.history.goBack();
+  }
 
   render() {
     const { error, note_name, content } = this.state

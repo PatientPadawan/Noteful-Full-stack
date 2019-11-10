@@ -14,7 +14,14 @@ export default class SideBar extends Component {
                     className="button" 
                     id='addFolder'
                 >
-                    Add folder
+                    {`Add\nFolder`}
+                </Link>
+                <Link
+                    to={'/delete-folder'} 
+                    className="button" 
+                    id='deleteFolder'
+                >
+                    {`Delete\nFolder`}
                 </Link>
             </nav>
         )
