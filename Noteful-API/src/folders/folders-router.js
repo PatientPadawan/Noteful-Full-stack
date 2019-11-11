@@ -96,7 +96,7 @@ foldersRouter
                 .status(400)
                 .json({
                     error: {
-                        message: `Request body must contain either 'Folder name'`
+                        message: `Request body must contain folder name`
                     }
                 })
         }

@@ -18,6 +18,17 @@ export default class DeleteFolder extends Component {
         }
     }
 
+    static propTypes = {
+        folders: PropTypes.array.isRequired,
+        onDeleteFolder: PropTypes.func.isRequired,
+        history: PropTypes.shape({
+            push: PropTypes.func,
+        }).isRequired,
+        match: PropTypes.shape({
+            params: PropTypes.object,
+        }).isRequired,
+    }
+
     static defaultProps = {
         onDeleteFolder: () => {},
         folders: [],
