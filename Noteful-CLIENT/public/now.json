@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "alias": "afableofthepatientpadawan-noteful",
     "name": "noteful",
     "routes": [
         {
